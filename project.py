@@ -6,7 +6,7 @@ def main():
         pixel.green=pixel.green// 2
         pixel.blue=pixel.blue// 2
     image.show()
-    print("hi")
+    print("hi how are u")
 
 if __name__ == '__main__':
     main()
