@@ -213,7 +213,7 @@ def graph(num , country ,state):
     # naming the y axis
     plt.ylabel('reports(people)')
     # giving a title to my graph
-    plt.title('confirmed , death , recovered in '+ country +" " +state + "from 4/12/2020 - 5/25/2021")
+    plt.title(country +" "+state +" between 4/12/2020 - 5/25/2021")
 
     # show a legend on the plot
     plt.legend()
@@ -242,19 +242,34 @@ def find_num(answer):
                     return (num , list_line[1] , "")
                 else:
                     state=input("which state:").title()
-                    for line in f:
-                        # create a dictionary for each line
-                        list_line = line.split(",")
-                        # since there is "," in the name of countries
-                        if len(list_line) == 495:
-                            # print(list_line)
-                            if list_line[1] == """"Korea""":
-                                list_line.pop(2)
-                                list_line[1] = list_line[1] + " south"
-                            else:
-                                    ist_line.pop(1)
-                        if state==list_line[0] and answer==list_line[1]:
-                            return (num , list_line[1] ,list_line[0])
+                    if state=="Australian Capital Territory":
+                        return (num , list_line[1] ,state)
+                    elif state=="Alberta":
+                        return (num, list_line[1], state)
+                    elif state=="Anhui":
+                        return (num, list_line[1], state)
+                    elif state=="Faroe Islands":
+                        return (num, list_line[1], state)
+                    elif state=="French Guiana":
+                        return (num, list_line[1], state)
+                    elif state=="Anguilla":
+                        return (num, list_line[1], state)
+                    elif state=="Aruba":
+                        return (num, list_line[1], state)
+                    else:
+                        for line in f:
+                            # create a dictionary for each line
+                            list_line = line.split(",")
+                            # since there is "," in the name of countries
+                            if len(list_line) == 495:
+                                # print(list_line)
+                                if list_line[1] == """"Korea""":
+                                    list_line.pop(2)
+                                    list_line[1] = list_line[1] + " south"
+                                else:
+                                        ist_line.pop(1)
+                            if state==list_line[0] and answer==list_line[1]:
+                                return (num , list_line[1] ,list_line[0])
 
             else:
                 num += 1
