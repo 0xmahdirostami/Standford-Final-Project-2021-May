@@ -263,7 +263,7 @@ def find_num(answer):
 
 
 
-def plot_pixel(visualization, x, y ,dict,average,totall):
+def plot_pixel(visualization, x, y ,dict,average,totall,which):
     """
     Set a pixel at a particular coordinate to be blue. Pixels start off as
     white, so all three color components have a value of 255. Setting the red
@@ -285,17 +285,40 @@ def plot_pixel(visualization, x, y ,dict,average,totall):
         rang=10
     elif rang<1:
         rang=1
-    for i in range(-rang,+rang):
-        pixel = visualization.get_pixel(x+i, y+i)
-        pixel.red =255
-        pixel.green =0
-        pixel = visualization.get_pixel(x - i, y + i)
-        pixel.red = 0
-        pixel.green = 255
-        pixel = visualization.get_pixel(x + i, y - i)
-        pixel.red = 0
-        pixel.green = 0
-        pixel.blue = 0
+    if which == "Death":
+        for i in range(-rang,+rang):
+            pixel = visualization.get_pixel(x+i, y+i)
+            pixel.blue =0
+            pixel.green =0
+            pixel = visualization.get_pixel(x - i, y + i)
+            pixel.blue = 0
+            pixel.green =0
+            pixel = visualization.get_pixel(x + i, y - i)
+            pixel.blue = 0
+            pixel.green = 0
+    elif which=="Recovered":
+        for i in range(-rang,+rang):
+            pixel = visualization.get_pixel(x+i, y+i)
+            pixel.red =0
+            pixel.blue =0
+            pixel = visualization.get_pixel(x - i, y + i)
+            pixel.red = 0
+            pixel.blue =0
+            pixel = visualization.get_pixel(x + i, y - i)
+            pixel.red = 0
+            pixel.blue = 0
+
+    elif which == "Confirmed":
+        for i in range(-rang,+rang):
+            pixel = visualization.get_pixel(x+i, y+i)
+            pixel.red =0
+            pixel.green =0
+            pixel = visualization.get_pixel(x - i, y + i)
+            pixel.red = 0
+            pixel.green =0
+            pixel = visualization.get_pixel(x + i, y - i)
+            pixel.red = 0
+            pixel.green = 0
 
 
 def longitude_to_x(longitude):
@@ -345,13 +368,12 @@ def plot(which):
         else:
             totall = dict[i]["totall_recovered"]
         if 0 < x < visualization.width and 0 < y < visualization.height:
-            plot_pixel(visualization, x, y ,dict,average,totall)
+            plot_pixel(visualization, x, y ,dict,average,totall,which)
 
 
 
     visualization.show()
 def main():
-    print(calculate_dict_recovered())
     answer=input("do you a want graph or an image :").title()
     if answer=="Image":
         which=input("which one :death ,recovered ,confirmed ").title()
