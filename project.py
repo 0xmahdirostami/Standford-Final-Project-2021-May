@@ -267,12 +267,18 @@ def creat_image():
     pass
 
 def main():
-    answer=input("give  me a country or type all:").title()
-    if answer=="All":
-        creat_image()
+    answer=input("do you want graph or an image :").title()
+    if answer=="Image":
+        which=input("which one :death ,recovered ,confirmed ").title()
+        creat_image(which)
+    elif answer=="Graph":
+        answer=input("which country:").title()
+        try:
+            num , country , state=find_num(answer)
+            graph(num , country ,state)
+        except:
+            print("please type correct country.")
     else:
-        num , country , state=find_num(answer)
-        graph(num , country ,state)
-
+        print("invalid input")
 if __name__ == "__main__":
     main()
