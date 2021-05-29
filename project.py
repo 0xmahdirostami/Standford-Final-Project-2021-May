@@ -222,60 +222,19 @@ def graph(num , country ,state):
     plt.show()
 
 def find_num(answer):
-    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_deaths_global.csv") as f:
-        next(f)
-        num = 0
-        for line in f:
-            # create a dictionary for each line
-            list_line = line.split(",")
-            # since there is "," in the name of countries
-            if len(list_line) == 495:
-                # print(list_line)
-                if list_line[1] == """"Korea""":
-                    list_line.pop(2)
-                    list_line[1] = list_line[1] + " south"
-                else:
-                    list_line.pop(1)
-            #print(list_line[1])
-            if list_line[1]==answer:
-                if list_line[0]=="":
-                    return (num , list_line[1] , "")
-                else:
-                    state=input("which state:").title()
-                    if state=="Australian Capital Territory":
-                        return (num , list_line[1] ,state)
-                    elif state=="Alberta":
-                        return (num, list_line[1], state)
-                    elif state=="Anhui":
-                        return (num, list_line[1], state)
-                    elif state=="Faroe Islands":
-                        return (num, list_line[1], state)
-                    elif state=="French Guiana":
-                        return (num, list_line[1], state)
-                    elif state=="Anguilla":
-                        return (num, list_line[1], state)
-                    elif state=="Aruba":
-                        return (num, list_line[1], state)
-                    else:
-                        for line in f:
-                            # create a dictionary for each line
-                            list_line = line.split(",")
-                            # since there is "," in the name of countries
-                            if len(list_line) == 495:
-                                # print(list_line)
-                                if list_line[1] == """"Korea""":
-                                    list_line.pop(2)
-                                    list_line[1] = list_line[1] + " south"
-                                else:
-                                        ist_line.pop(1)
-                            if state==list_line[0] and answer==list_line[1]:
-                                return (num , list_line[1] ,list_line[0])
-
+    dict=calculate_dict_death()
+    for num in range(274):
+        if dict[num]["country"]==answer:
+            if dict[num]["state"]=="":
+                return (num ,answer ,"" )
             else:
-                num += 1
-
-
-
+                state=input("which state:").title()
+                if state==dict[num]["state"]:
+                    return (num , answer ,state)
+                else:
+                    for num in range(274):
+                        if state==dict[num]["state"] and dict[num]["country"]==answer:
+                            return (num, answer, state)
 
 
 def plot_pixel(visualization, x, y ,dict,average,totall,which):
@@ -358,9 +317,9 @@ def plot(which):
     if which=="Death":
         dict=calculate_dict_death()
         sum = 0
-        for i in range(259):
+        for i in range(274):
             sum += dict[i]["totall_deaths"]
-        average=sum/259
+        average=sum/274
     elif which=="Recovered":
         dict=calculate_dict_recovered()
         sum = 0
@@ -370,20 +329,33 @@ def plot(which):
     elif which=="Confirmed":
         dict=calculate_dict_confirm()
         sum=0
-        for i in range(259):
+        for i in range(274):
             sum += dict[i]["totall_confirmed"]
-        average=sum/259
-    for i in range(259):
-        y=latitude_to_y(dict[i]['lat'])
-        x=longitude_to_x(dict[i]['long'])
-        if which=="Death":
-            totall=dict[i]["totall_deaths"]
-        elif which=="Confirmed":
-            totall=dict[i]["totall_confirmed"]
-        else:
-            totall = dict[i]["totall_recovered"]
-        if 0 < x < visualization.width and 0 < y < visualization.height:
-            plot_pixel(visualization, x, y ,dict,average,totall,which)
+        average=sum/274
+    if which=="Recovered":
+        for i in range(259):
+            y=latitude_to_y(dict[i]['lat'])
+            x=longitude_to_x(dict[i]['long'])
+            if which=="Death":
+                totall=dict[i]["totall_deaths"]
+            elif which=="Confirmed":
+                totall=dict[i]["totall_confirmed"]
+            else:
+                totall = dict[i]["totall_recovered"]
+            if 0 < x < visualization.width and 0 < y < visualization.height:
+                plot_pixel(visualization, x, y ,dict,average,totall,which)
+    else:
+        for i in range(274):
+            y=latitude_to_y(dict[i]['lat'])
+            x=longitude_to_x(dict[i]['long'])
+            if which=="Death":
+                totall=dict[i]["totall_deaths"]
+            elif which=="Confirmed":
+                totall=dict[i]["totall_confirmed"]
+            else:
+                totall = dict[i]["totall_recovered"]
+            if 0 < x < visualization.width and 0 < y < visualization.height:
+                plot_pixel(visualization, x, y ,dict,average,totall,which)
 
 
 
