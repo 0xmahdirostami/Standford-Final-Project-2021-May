@@ -7,7 +7,7 @@ an image of all countries (deaths ,confirmed ,recovered)
 
 # don't worry about this import! It just allows us to grab all the files in the Finalproject/ directory
 import csv
-import os
+from math import pi
 import matplotlib.pyplot as plt
 from simpleimage import SimpleImage
 
@@ -21,13 +21,12 @@ MAX_LONGITUDE = 180
 MIN_LATITUDE = -90
 MAX_LATITUDE = 90
 
-# The folder in which all the country data can be found
-COUNTRY_DIRECTORY = "finalproject"
 
-def calculate_dict_confirm(filename):
+
+def calculate_dict_confirm():
     #create totall dictionary
     calculate_dict_confirmed={}
-    with open(filename) as co:
+    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_confirmed_global.csv") as co:
         next(co)
         #creat id for every line
         id=0
@@ -74,10 +73,10 @@ def calculate_dict_confirm(filename):
             id += 1
     return calculate_dict_confirmed
 
-def calculate_dict_death(filename):
+def calculate_dict_death():
     #create totall dictionary
     calculate_dict_death={}
-    with open(filename) as de:
+    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_deaths_global.csv") as de:
         next(de)
         #creat id for every line
         id=0
@@ -126,10 +125,10 @@ def calculate_dict_death(filename):
     return calculate_dict_death
 
 
-def calculate_dict_recovered(filename):
+def calculate_dict_recovered():
     #create totall dictionary
     calculate_dict_recovered={}
-    with open(filename) as re:
+    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_recovered_global.csv") as re:
         next(re)
         #creat id for every line
         id=0
@@ -178,12 +177,9 @@ def calculate_dict_recovered(filename):
 
 
 def graph(num , country ,state):
-    dict_death = calculate_dict_death(
-        "COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_deaths_global.csv")
-    dict_recovered = calculate_dict_recovered(
-        "COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_recovered_global.csv")
-    dict_confirm = calculate_dict_confirm(
-        "COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_confirmed_global.csv")
+    dict_death = calculate_dict_death()
+    dict_recovered = calculate_dict_recovered()
+    dict_confirm = calculate_dict_confirm()
 
     x1 = [2,4,6,8,10,12,14,16]
     y1 = [
@@ -263,14 +259,106 @@ def find_num(answer):
             else:
                 num += 1
 
-def creat_image():
-    pass
 
+
+
+
+def plot_pixel(visualization, x, y ,dict,average,totall):
+    """
+    Set a pixel at a particular coordinate to be blue. Pixels start off as
+    white, so all three color components have a value of 255. Setting the red
+    and green components to 0 makes the pixel appear blue.
+
+    Note that we don't return anything in this function because the Pixel is
+    'mutated' in place
+
+    Parameters:
+        - `visualization` is the SimpleImage that will eventually be
+          shown to the user
+        - `x` is the x coordinate of the pixel that we are turning blue
+        - `y` is the y coordinate of the pixel that we are turning blue
+    """
+
+    rang=int(totall*10//average)
+    #print(rang)
+    if rang>=10:
+        rang=10
+    elif rang<1:
+        rang=1
+    for i in range(-rang,+rang):
+        pixel = visualization.get_pixel(x+i, y+i)
+        pixel.red =255
+        pixel.green =0
+        pixel = visualization.get_pixel(x - i, y + i)
+        pixel.red = 0
+        pixel.green = 255
+        pixel = visualization.get_pixel(x + i, y - i)
+        pixel.red = 0
+        pixel.green = 0
+        pixel.blue = 0
+
+
+def longitude_to_x(longitude):
+    """
+    Scales a longitude coordinate to a coordinate in the visualization email
+    """
+    return VISUALIZATION_WIDTH * (longitude - MIN_LONGITUDE) / (MAX_LONGITUDE - MIN_LONGITUDE)
+
+
+def latitude_to_y(latitude):
+    """
+    Scales a latitude coordinate to a coordinate in the visualization email
+    """
+    return VISUALIZATION_HEIGHT * (1.0 - (latitude - MIN_LATITUDE) / (MAX_LATITUDE - MIN_LATITUDE))
+
+
+def plot(which):
+    # create a blank image on which we'll plot cities
+    visualization = SimpleImage.blank(
+        VISUALIZATION_WIDTH, VISUALIZATION_HEIGHT
+    )
+    if which=="Death":
+        dict=calculate_dict_death()
+        sum = 0
+        for i in range(259):
+            sum += dict[i]["totall_deaths"]
+        average=sum/259
+    elif which=="Recovered":
+        dict=calculate_dict_recovered()
+        sum = 0
+        for i in range(259):
+            sum += dict[i]["totall_recovered"]
+        average = sum / 259
+    elif which=="Confirmed":
+        dict=calculate_dict_confirm()
+        sum=0
+        for i in range(259):
+            sum += dict[i]["totall_confirmed"]
+        average=sum/259
+    for i in range(259):
+        y=latitude_to_y(dict[i]['lat'])
+        x=longitude_to_x(dict[i]['long'])
+        if which=="Death":
+            totall=dict[i]["totall_deaths"]
+        elif which=="Confirmed":
+            totall=dict[i]["totall_confirmed"]
+        else:
+            totall = dict[i]["totall_recovered"]
+        if 0 < x < visualization.width and 0 < y < visualization.height:
+            plot_pixel(visualization, x, y ,dict,average,totall)
+
+
+
+    visualization.show()
 def main():
-    answer=input("do you want graph or an image :").title()
+    print(calculate_dict_recovered())
+    answer=input("do you a want graph or an image :").title()
     if answer=="Image":
         which=input("which one :death ,recovered ,confirmed ").title()
-        creat_image(which)
+        try:
+            plot(which)
+        except:
+            print("invalid input")
     elif answer=="Graph":
         answer=input("which country:").title()
         try:
