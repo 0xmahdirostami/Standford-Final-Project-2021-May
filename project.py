@@ -209,11 +209,11 @@ def graph(num , country ,state):
     # plotting the line 2 points
     plt.plot(x3, y3, label="recovered")
     # naming the x axis
-    plt.xlabel('time(months')
+    plt.xlabel('time(months)')
     # naming the y axis
-    plt.ylabel('reports(people')
+    plt.ylabel('reports(people)')
     # giving a title to my graph
-    plt.title('confirmed , death , recovered in '+ country +" (" +state+")")
+    plt.title('confirmed , death , recovered in '+ country +" " +state + "from 4/12/2020 - 5/25/2021")
 
     # show a legend on the plot
     plt.legend()
@@ -252,7 +252,7 @@ def find_num(answer):
                                 list_line.pop(2)
                                 list_line[1] = list_line[1] + " south"
                             else:
-                                list_line.pop(1)
+                                    ist_line.pop(1)
                         if state==list_line[0] and answer==list_line[1]:
                             return (num , list_line[1] ,list_line[0])
 
@@ -374,7 +374,7 @@ def plot(which):
 
     visualization.show()
 def main():
-    answer=input("do you a want graph or an image :").title()
+    answer=input("do you want a graph or an image :").title()
     if answer=="Image":
         which=input("which one :death ,recovered ,confirmed ").title()
         try:
