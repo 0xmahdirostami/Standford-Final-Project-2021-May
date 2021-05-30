@@ -7,7 +7,6 @@ an image of all countries (deaths ,confirmed ,recovered)
 
 # don't worry about this import! It just allows us to grab all the files in the Finalproject/ directory
 import csv
-from math import pi
 import matplotlib.pyplot as plt
 from simpleimage import SimpleImage
 
