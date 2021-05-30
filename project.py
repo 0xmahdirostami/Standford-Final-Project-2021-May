@@ -44,6 +44,7 @@ def calculate_dict_confirm():
                     list_line.pop(1)
             calculate_line["state"]=list_line[0]
             calculate_line["country"]=list_line[1]
+            # see there is lat and long or not and convert string to float
             if len(list_line[2])==0:
                 calculate_line["lat"] = 0
             else:
@@ -58,16 +59,16 @@ def calculate_dict_confirm():
                     calculate_line["long"] = -1 * float(list_line[3][1:])
                 else:
                     calculate_line["long"] = float(list_line[3])
-
+            # create a totall and 2 moth -2month values
             calculate_line["totall_confirmed"] = sum(map(float,list_line[4:]))
-            calculate_line["3-22-2020_co"]=sum(map(float,list_line[4:64]))
-            calculate_line["5-22-2020_co"] = sum(map(float, list_line[64:124]))
-            calculate_line["7-22-2020_co"] = sum(map(float, list_line[124:184]))
-            calculate_line["9-22-2020_co"] = sum(map(float, list_line[184:224]))
-            calculate_line["11-22-2020_co"] = sum(map(float, list_line[224:304]))
-            calculate_line["1-22-2021_co"] = sum(map(float, list_line[304:364]))
-            calculate_line["3-22-2021_co"] = sum(map(float, list_line[364:424]))
-            calculate_line["5-22-2021_co"] = sum(map(float, list_line[424:]))
+            calculate_line["3-22-2020_co"]=sum(map(float,list_line[4:66]))
+            calculate_line["5-22-2020_co"] = sum(map(float, list_line[66:126]))
+            calculate_line["7-22-2020_co"] = sum(map(float, list_line[126:186]))
+            calculate_line["9-22-2020_co"] = sum(map(float, list_line[184:246]))
+            calculate_line["11-22-2020_co"] = sum(map(float, list_line[246:306]))
+            calculate_line["1-22-2021_co"] = sum(map(float, list_line[306:366]))
+            calculate_line["3-22-2021_co"] = sum(map(float, list_line[366:426]))
+            calculate_line["5-22-2021_co"] = sum(map(float, list_line[426:]))
 
             calculate_dict_confirmed[id]=calculate_line
             id += 1
@@ -94,6 +95,7 @@ def calculate_dict_death():
                     list_line.pop(1)
             calculate_line["state"]=list_line[0]
             calculate_line["country"]=list_line[1]
+            # see there is lat and long or not and convert string to float
             if len(list_line[2])==0:
                 calculate_line["lat"] = 0
             else:
@@ -108,16 +110,16 @@ def calculate_dict_death():
                     calculate_line["long"] = -1 * float(list_line[3][1:])
                 else:
                     calculate_line["long"] = float(list_line[3])
-
+            #create a totall and 2 moth -2month values
             calculate_line["totall_deaths"] = sum(map(float,list_line[4:]))
-            calculate_line["3-22-2020_de"]=sum(map(float,list_line[4:64]))
-            calculate_line["5-22-2020_de"] = sum(map(float, list_line[64:124]))
-            calculate_line["7-22-2020_de"] = sum(map(float, list_line[124:184]))
-            calculate_line["9-22-2020_de"] = sum(map(float, list_line[184:224]))
-            calculate_line["11-22-2020_de"] = sum(map(float, list_line[224:304]))
-            calculate_line["1-22-2021_de"] = sum(map(float, list_line[304:364]))
-            calculate_line["3-22-2021_de"] = sum(map(float, list_line[364:424]))
-            calculate_line["5-22-2021_de"] = sum(map(float, list_line[424:]))
+            calculate_line["3-22-2020_de"]=sum(map(float,list_line[4:66]))
+            calculate_line["5-22-2020_de"] = sum(map(float, list_line[66:126]))
+            calculate_line["7-22-2020_de"] = sum(map(float, list_line[126:186]))
+            calculate_line["9-22-2020_de"] = sum(map(float, list_line[186:226]))
+            calculate_line["11-22-2020_de"] = sum(map(float, list_line[226:306]))
+            calculate_line["1-22-2021_de"] = sum(map(float, list_line[306:366]))
+            calculate_line["3-22-2021_de"] = sum(map(float, list_line[366:426]))
+            calculate_line["5-22-2021_de"] = sum(map(float, list_line[426:]))
 
             calculate_dict_death[id]=calculate_line
             id += 1
@@ -146,6 +148,7 @@ def calculate_dict_recovered():
                     list_line.pop(1)
             calculate_line["state"]=list_line[0]
             calculate_line["country"]=list_line[1]
+            # see there is lat and long or not and convert string to float
             if len(list_line[2])==0:
                 calculate_line["lat"] = 0
             else:
@@ -160,22 +163,22 @@ def calculate_dict_recovered():
                     calculate_line["long"] = -1 * float(list_line[3][1:])
                 else:
                     calculate_line["long"] = float(list_line[3])
-
+            # create a totall and 2 moth -2month values
             calculate_line["totall_recovered"] = sum(map(float,list_line[4:]))
-            calculate_line["3-22-2020_re"]=sum(map(float,list_line[4:64]))
-            calculate_line["5-22-2020_re"] = sum(map(float, list_line[64:124]))
-            calculate_line["7-22-2020_re"] = sum(map(float, list_line[124:184]))
-            calculate_line["9-22-2020_re"] = sum(map(float, list_line[184:224]))
-            calculate_line["11-22-2020_re"] = sum(map(float, list_line[224:304]))
-            calculate_line["1-22-2021_re"] = sum(map(float, list_line[304:364]))
-            calculate_line["3-22-2021_re"] = sum(map(float, list_line[364:424]))
-            calculate_line["5-22-2021_re"] = sum(map(float, list_line[424:]))
+            calculate_line["3-22-2020_re"]=sum(map(float,list_line[4:66]))
+            calculate_line["5-22-2020_re"] = sum(map(float, list_line[66:126]))
+            calculate_line["7-22-2020_re"] = sum(map(float, list_line[126:186]))
+            calculate_line["9-22-2020_re"] = sum(map(float, list_line[186:246]))
+            calculate_line["11-22-2020_re"] = sum(map(float, list_line[246:306]))
+            calculate_line["1-22-2021_re"] = sum(map(float, list_line[306:366]))
+            calculate_line["3-22-2021_re"] = sum(map(float, list_line[366:426]))
+            calculate_line["5-22-2021_re"] = sum(map(float, list_line[426:]))
 
             calculate_dict_recovered[id]=calculate_line
             id += 1
     return calculate_dict_recovered
 
-
+#creat graph for each counrty or state
 def graph(num , country ,state):
     dict_death = calculate_dict_death()
     dict_recovered = calculate_dict_recovered()
@@ -220,7 +223,7 @@ def graph(num , country ,state):
 
     #show
     plt.show()
-
+#find a number of countries list
 def find_num(answer):
     dict=calculate_dict_death()
     for num in range(274):
@@ -332,6 +335,7 @@ def plot(which):
         for i in range(274):
             sum += dict[i]["totall_confirmed"]
         average=sum/274
+    #the length of recovered dictionary is less than the others
     if which=="Recovered":
         for i in range(259):
             y=latitude_to_y(dict[i]['lat'])
