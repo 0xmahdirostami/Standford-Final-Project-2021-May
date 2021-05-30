@@ -179,53 +179,120 @@ def calculate_dict_recovered():
 
 #creat graph for each counrty or state
 def graph(num , country ,state):
+
     dict_death = calculate_dict_death()
     dict_recovered = calculate_dict_recovered()
     dict_confirm = calculate_dict_confirm()
+    #in recovered dict there is one canada ,in death and confirmed there is 15 states
+    #num 39 is canada
+    if num==39:
+        one ,two ,three ,four ,five ,six ,seven ,eight = 0,0,0,0,0,0,0,0
+        for num in range(39,55):
+            one += dict_confirm[num]["3-22-2020_co"]
+            two += dict_confirm[num]["5-22-2020_co"]
+            three+=dict_confirm[num]["7-22-2020_co"]
+            four+= dict_confirm[num]["9-22-2020_co"]
+            five+= dict_confirm[num]["11-22-2020_co"]
+            six += dict_confirm[num]["1-22-2021_co"]
+            seven+=dict_confirm[num]["3-22-2021_co"]
+            eight+=dict_confirm[num]["5-22-2021_co"]
 
-    x1 = [2,4,6,8,10,12,14,16]
-    y1 = [
-         dict_confirm[num]["3-22-2020_co"],dict_confirm[num]["5-22-2020_co"]
-        ,dict_confirm[num]["7-22-2020_co"],dict_confirm[num]["9-22-2020_co"]
-        ,dict_confirm[num]["11-22-2020_co"],dict_confirm[num]["1-22-2021_co"]
-        ,dict_confirm[num]["3-22-2021_co"],dict_confirm[num]["5-22-2021_co"]]
-    # plotting the line 1 points
-    plt.plot(x1, y1, label="confirmed")
+        x1 = [2, 4, 6, 8, 10, 12, 14, 16]
+        y1 = [one,two,three,four,five,six,seven,eight]
+        # plotting the line 1 points
+        plt.plot(x1, y1, label="confirmed")
 
-    # line 2 points
-    x2 = [2,4,6,8,10,12,14,16]
-    y2 = [
-        dict_death[num]["3-22-2020_de"], dict_death[num]["5-22-2020_de"]
-        , dict_death[num]["7-22-2020_de"], dict_death[num]["9-22-2020_de"]
-        , dict_death[num]["11-22-2020_de"], dict_death[num]["1-22-2021_de"]
-        , dict_death[num]["3-22-2021_de"], dict_death[num]["5-22-2021_de"]]
-    # plotting the line 2 points
-    plt.plot(x2, y2, label="death")
-    # line 3 points
-    x3 = [2,4,6,8,10,12,14,16]
-    y3 = [
-        dict_recovered[num]["3-22-2020_re"], dict_recovered[num]["5-22-2020_re"]
-        , dict_recovered[num]["7-22-2020_re"], dict_recovered[num]["9-22-2020_re"]
-        , dict_recovered[num]["11-22-2020_re"], dict_recovered[num]["1-22-2021_re"]
-        , dict_recovered[num]["3-22-2021_re"], dict_recovered[num]["5-22-2021_re"]]
-    # plotting the line 2 points
-    plt.plot(x3, y3, label="recovered")
-    # naming the x axis
-    plt.xlabel('time(months)')
-    # naming the y axis
-    plt.ylabel('reports(people)')
-    # giving a title to my graph
-    plt.title(country +" "+state +" between 4/12/2020 - 5/25/2021")
+        one, two, three, four, five, six, seven, eight = 0,0,0,0,0,0,0,0
+        for num in range(39, 55):
+            one += dict_death[num]["3-22-2020_de"]
+            two += dict_death[num]["5-22-2020_de"]
+            three += dict_death[num]["7-22-2020_de"]
+            four += dict_death[num]["9-22-2020_de"]
+            five += dict_death[num]["11-22-2020_de"]
+            six += dict_death[num]["1-22-2021_de"]
+            seven += dict_death[num]["3-22-2021_de"]
+            eight += dict_death[num]["5-22-2021_de"]
+        # line 2 points
+        x2 = [2, 4, 6, 8, 10, 12, 14, 16]
+        y2 = [one,two,three,four,five,six,seven,eight]
+        # plotting the line 2 points
+        plt.plot(x2, y2, label="death")
+        # line 3 points
+        x3 = [2, 4, 6, 8, 10, 12, 14, 16]
+        y3 = [
+            dict_recovered[num]["3-22-2020_re"], dict_recovered[num]["5-22-2020_re"]
+            , dict_recovered[num]["7-22-2020_re"], dict_recovered[num]["9-22-2020_re"]
+            , dict_recovered[num]["11-22-2020_re"], dict_recovered[num]["1-22-2021_re"]
+            , dict_recovered[num]["3-22-2021_re"], dict_recovered[num]["5-22-2021_re"]]
+        # plotting the line 2 points
+        plt.plot(x3, y3, label="recovered")
+        # naming the x axis
+        plt.xlabel('time(months)')
+        # naming the y axis
+        plt.ylabel('reports(people)')
+        # giving a title to my graph
+        plt.title(country + " " + state + " between 4/12/2020 - 5/25/2021")
 
-    # show a legend on the plot
-    plt.legend()
+        # show a legend on the plot
+        plt.legend()
 
-    #show
-    plt.show()
+        # show
+        plt.show()
+    else:
+        num = change(num)
+        x1 = [2,4,6,8,10,12,14,16]
+        y1 = [
+             dict_confirm[num]["3-22-2020_co"],dict_confirm[num]["5-22-2020_co"]
+            ,dict_confirm[num]["7-22-2020_co"],dict_confirm[num]["9-22-2020_co"]
+            ,dict_confirm[num]["11-22-2020_co"],dict_confirm[num]["1-22-2021_co"]
+            ,dict_confirm[num]["3-22-2021_co"],dict_confirm[num]["5-22-2021_co"]]
+        # plotting the line 1 points
+        plt.plot(x1, y1, label="confirmed")
+
+        # line 2 points
+        x2 = [2,4,6,8,10,12,14,16]
+        y2 = [
+            dict_death[num]["3-22-2020_de"], dict_death[num]["5-22-2020_de"]
+            , dict_death[num]["7-22-2020_de"], dict_death[num]["9-22-2020_de"]
+            , dict_death[num]["11-22-2020_de"], dict_death[num]["1-22-2021_de"]
+            , dict_death[num]["3-22-2021_de"], dict_death[num]["5-22-2021_de"]]
+        # plotting the line 2 points
+        plt.plot(x2, y2, label="death")
+        # line 3 points
+        if num>54:
+            num=num-15
+        x3 = [2,4,6,8,10,12,14,16]
+        y3 = [
+            dict_recovered[num]["3-22-2020_re"], dict_recovered[num]["5-22-2020_re"]
+            , dict_recovered[num]["7-22-2020_re"], dict_recovered[num]["9-22-2020_re"]
+            , dict_recovered[num]["11-22-2020_re"], dict_recovered[num]["1-22-2021_re"]
+            , dict_recovered[num]["3-22-2021_re"], dict_recovered[num]["5-22-2021_re"]]
+        # plotting the line 2 points
+        plt.plot(x3, y3, label="recovered")
+        # naming the x axis
+        plt.xlabel('time(months)')
+        # naming the y axis
+        plt.ylabel('reports(people)')
+        # giving a title to my graph
+        plt.title(country +" "+state +" between 4/12/2020 - 5/25/2021")
+
+        # show a legend on the plot
+        plt.legend()
+
+        #show
+        plt.show()
+def change(num):
+    if num>39:
+        num=num+15
+        return num
+    else:
+        return num
+
+
 #find a number of countries list
 def find_num(answer):
-    dict=calculate_dict_death()
-    for num in range(274):
+    dict=calculate_dict_recovered()
+    for num in range(259):
         if dict[num]["country"]==answer:
             if dict[num]["state"]=="":
                 return (num ,answer ,"" )
@@ -238,6 +305,9 @@ def find_num(answer):
                         if state==dict[num]["state"] and dict[num]["country"]==answer:
                             return (num, answer, state)
 
+
+
+"""creat image"""
 
 def plot_pixel(visualization, x, y ,dict,average,totall,which):
     """
@@ -257,8 +327,8 @@ def plot_pixel(visualization, x, y ,dict,average,totall,which):
 
     rang=int(totall*10//average)
     #print(rang)
-    if rang>=10:
-        rang=10
+    if rang>=15:
+        rang=15
     elif rang<1:
         rang=1
     if which == "Death":
@@ -272,19 +342,22 @@ def plot_pixel(visualization, x, y ,dict,average,totall,which):
             pixel = visualization.get_pixel(x + i, y - i)
             pixel.blue = 0
             pixel.green = 0
-    elif which=="Recovered":
+    elif which=="Confirmed":
         for i in range(-rang,+rang):
             pixel = visualization.get_pixel(x+i, y+i)
             pixel.red =0
             pixel.blue =0
+            pixel.green =0
             pixel = visualization.get_pixel(x - i, y + i)
             pixel.red = 0
             pixel.blue =0
+            pixel.green = 0
             pixel = visualization.get_pixel(x + i, y - i)
             pixel.red = 0
             pixel.blue = 0
+            pixel.green = 0
 
-    elif which == "Confirmed":
+    elif which == "Recovered":
         for i in range(-rang,+rang):
             pixel = visualization.get_pixel(x+i, y+i)
             pixel.red =0
@@ -318,51 +391,50 @@ def plot(which):
     )
     if which=="Death":
         dict=calculate_dict_death()
+        #calculate average
         sum = 0
         for i in range(274):
             sum += dict[i]["totall_deaths"]
         average=sum/274
+        for i in range(274):
+            y=latitude_to_y(dict[i]['lat'])
+            x=longitude_to_x(dict[i]['long'])
+            totall = dict[i]["totall_deaths"]
+            if 0 < x < visualization.width and 0 < y < visualization.height:
+                plot_pixel(visualization, x, y ,dict,average,totall,which)
+
     elif which=="Recovered":
         dict=calculate_dict_recovered()
+        # calculate average
         sum = 0
+        # the length of recovered dictionary is less than the others
         for i in range(259):
             sum += dict[i]["totall_recovered"]
         average = sum / 259
+        # the length of recovered dictionary is less than the others
+        for i in range(259):
+            y=latitude_to_y(dict[i]['lat'])
+            x=longitude_to_x(dict[i]['long'])
+            totall = dict[i]["totall_recovered"]
+            if 0 < x < visualization.width and 0 < y < visualization.height:
+                plot_pixel(visualization, x, y, dict, average, totall, which)
+
     elif which=="Confirmed":
         dict=calculate_dict_confirm()
         sum=0
         for i in range(274):
             sum += dict[i]["totall_confirmed"]
         average=sum/274
-    #the length of recovered dictionary is less than the others
-    if which=="Recovered":
-        for i in range(259):
-            y=latitude_to_y(dict[i]['lat'])
-            x=longitude_to_x(dict[i]['long'])
-            if which=="Death":
-                totall=dict[i]["totall_deaths"]
-            elif which=="Confirmed":
-                totall=dict[i]["totall_confirmed"]
-            else:
-                totall = dict[i]["totall_recovered"]
-            if 0 < x < visualization.width and 0 < y < visualization.height:
-                plot_pixel(visualization, x, y ,dict,average,totall,which)
-    else:
         for i in range(274):
             y=latitude_to_y(dict[i]['lat'])
             x=longitude_to_x(dict[i]['long'])
-            if which=="Death":
-                totall=dict[i]["totall_deaths"]
-            elif which=="Confirmed":
-                totall=dict[i]["totall_confirmed"]
-            else:
-                totall = dict[i]["totall_recovered"]
+            totall=dict[i]["totall_confirmed"]
             if 0 < x < visualization.width and 0 < y < visualization.height:
                 plot_pixel(visualization, x, y ,dict,average,totall,which)
-
-
-
     visualization.show()
+
+
+
 def main():
     answer=input("do you want a graph or an image :").title()
     if answer=="Image":
