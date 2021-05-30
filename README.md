@@ -12,7 +12,7 @@ my git hub:https://github.com/rostamimahdi1997
 stanford-final-project : https://github.com/rostamimahdi1997/standford-final-project
 
 
-#report for canada
+#report for canada in excel file
 recovered is about one line
 but
-in confirmed and death there of 15 lines if reports for canada
+in confirmed and death there of 15 lines if reports for canada i try to address it but,because of that there is some mistake in the graph of canada
