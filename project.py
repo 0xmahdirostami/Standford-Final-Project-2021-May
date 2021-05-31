@@ -60,6 +60,11 @@ def calculate_dict_confirm():
                     calculate_line["long"] = float(list_line[3])
             # create a totall and 2 moth -2month values
             calculate_line["totall_confirmed"] = sum(map(float,list_line[4:]))
+            #print(len(list_line))
+            #len list_line =494
+            #len days=494-3=491
+            #len 2 moths= 491//8==60
+
             calculate_line["3-22-2020_co"]=sum(map(float,list_line[4:66]))
             calculate_line["5-22-2020_co"] = sum(map(float, list_line[66:126]))
             calculate_line["7-22-2020_co"] = sum(map(float, list_line[126:186]))
@@ -111,6 +116,9 @@ def calculate_dict_death():
                     calculate_line["long"] = float(list_line[3])
             #create a totall and 2 moth -2month values
             calculate_line["totall_deaths"] = sum(map(float,list_line[4:]))
+            # len list_line =494
+            # len days=494-3=491
+            # len 2 moths= 491//8==60
             calculate_line["3-22-2020_de"]=sum(map(float,list_line[4:66]))
             calculate_line["5-22-2020_de"] = sum(map(float, list_line[66:126]))
             calculate_line["7-22-2020_de"] = sum(map(float, list_line[126:186]))
@@ -164,6 +172,9 @@ def calculate_dict_recovered():
                     calculate_line["long"] = float(list_line[3])
             # create a totall and 2 moth -2month values
             calculate_line["totall_recovered"] = sum(map(float,list_line[4:]))
+            # len list_line =494
+            # len days=494-3=491
+            # len 2 moths= 491//8==60
             calculate_line["3-22-2020_re"]=sum(map(float,list_line[4:66]))
             calculate_line["5-22-2020_re"] = sum(map(float, list_line[66:126]))
             calculate_line["7-22-2020_re"] = sum(map(float, list_line[126:186]))
@@ -186,19 +197,19 @@ def graph(num , country ,state):
     #in recovered dict there is one canada ,in death and confirmed there is 15 states
     #num 39 is canada
     if num==39:
-        one ,two ,three ,four ,five ,six ,seven ,eight = 0,0,0,0,0,0,0,0
+        one1 ,two1 ,three1 ,four1 ,five1 ,six1 ,seven1 ,eight1 = 0,0,0,0,0,0,0,0
         for num in range(39,55):
-            one += dict_confirm[num]["3-22-2020_co"]
-            two += dict_confirm[num]["5-22-2020_co"]
-            three+=dict_confirm[num]["7-22-2020_co"]
-            four+= dict_confirm[num]["9-22-2020_co"]
-            five+= dict_confirm[num]["11-22-2020_co"]
-            six += dict_confirm[num]["1-22-2021_co"]
-            seven+=dict_confirm[num]["3-22-2021_co"]
-            eight+=dict_confirm[num]["5-22-2021_co"]
+            one1 += dict_confirm[num]["3-22-2020_co"]
+            two1 += dict_confirm[num]["5-22-2020_co"]
+            three1+=dict_confirm[num]["7-22-2020_co"]
+            four1+= dict_confirm[num]["9-22-2020_co"]
+            five1+= dict_confirm[num]["11-22-2020_co"]
+            six1 += dict_confirm[num]["1-22-2021_co"]
+            seven1+=dict_confirm[num]["3-22-2021_co"]
+            eight1+=dict_confirm[num]["5-22-2021_co"]
 
         x1 = [2, 4, 6, 8, 10, 12, 14, 16]
-        y1 = [one,two,three,four,five,six,seven,eight]
+        y1 = [one1,two1,three1,four1,five1,six1,seven1,eight1]
         # plotting the line 1 points
         plt.plot(x1, y1, label="confirmed")
 
@@ -219,11 +230,8 @@ def graph(num , country ,state):
         plt.plot(x2, y2, label="death")
         # line 3 points
         x3 = [2, 4, 6, 8, 10, 12, 14, 16]
-        y3 = [
-            dict_recovered[num]["3-22-2020_re"], dict_recovered[num]["5-22-2020_re"]
-            , dict_recovered[num]["7-22-2020_re"], dict_recovered[num]["9-22-2020_re"]
-            , dict_recovered[num]["11-22-2020_re"], dict_recovered[num]["1-22-2021_re"]
-            , dict_recovered[num]["3-22-2021_re"], dict_recovered[num]["5-22-2021_re"]]
+        y3 = [one1-one,two1-two,three1-three,four1-four,five1-five,six1-six,seven1-seven,eight1-eight]
+
         # plotting the line 2 points
         plt.plot(x3, y3, label="recovered")
         # naming the x axis
@@ -231,7 +239,7 @@ def graph(num , country ,state):
         # naming the y axis
         plt.ylabel('reports(people)')
         # giving a title to my graph
-        plt.title(country + " " + state + " between 4/12/2020 - 5/25/2021")
+        plt.title(country + " " + state + " between 1/22/2020 - 5/25/2021")
 
         # show a legend on the plot
         plt.legend()
@@ -274,7 +282,7 @@ def graph(num , country ,state):
         # naming the y axis
         plt.ylabel('reports(people)')
         # giving a title to my graph
-        plt.title(country +" "+state +" between 4/12/2020 - 5/25/2021")
+        plt.title(country +" "+state +" between 1/22/2020 - 5/25/2021")
 
         # show a legend on the plot
         plt.legend()
@@ -301,7 +309,7 @@ def find_num(answer):
                 if state==dict[num]["state"]:
                     return (num , answer ,state)
                 else:
-                    for num in range(274):
+                    for num in range(259):
                         if state==dict[num]["state"] and dict[num]["country"]==answer:
                             return (num, answer, state)
 
@@ -431,6 +439,8 @@ def plot(which):
             totall=dict[i]["totall_confirmed"]
             if 0 < x < visualization.width and 0 < y < visualization.height:
                 plot_pixel(visualization, x, y ,dict,average,totall,which)
+    else:
+        print("invalid input")
     visualization.show()
 
 
