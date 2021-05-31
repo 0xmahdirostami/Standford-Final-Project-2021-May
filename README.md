@@ -11,3 +11,5 @@ Stanford-final-project: https://github.com/rostamimahdi1997/standford-final-proj
 twitter :https://twitter.com/maahdiro
 youtube channle:https://www.youtube.com/channel/UC9RUFeRcabHOJa5QHq_xyYA
 youtube :maahdiro
+email :rostamimahdi1997@gmail.com
+linkein :https://www.linkedin.com/in/mahdi-rostami-7b0582202
