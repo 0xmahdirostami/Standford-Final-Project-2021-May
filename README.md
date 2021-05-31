@@ -8,5 +8,6 @@ also, there is a graph for each country (if the county has states you have to sa
 between 1/22/2020 - 5/25/2021.
 my git hub:https://github.com/rostamimahdi1997
 Stanford-final-project: https://github.com/rostamimahdi1997/standford-final-project.
-my youtube channel :maahdiro
-my twitter :maahdiro
+twitter :https://twitter.com/maahdiro
+youtube channle:https://www.youtube.com/channel/UC9RUFeRcabHOJa5QHq_xyYA
+youtube :maahdiro
