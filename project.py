@@ -68,7 +68,7 @@ def calculate_dict_confirm():
             calculate_line["3-22-2021_co"] = sum(map(float, list_line[366:426]))
             calculate_line["5-22-2021_co"] = sum(map(float, list_line[426:]))
 
-            print(calculate_line["state"],calculate_line["country"])
+            #print(calculate_line["state"],calculate_line["country"])
             calculate_dict_confirmed[id]=calculate_line
             id += 1
     return calculate_dict_confirmed
