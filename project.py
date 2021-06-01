@@ -218,7 +218,8 @@ def graph(num , country ,state):
         plt.plot(x2, y2, label="death")
         # line 3 points
         x3 = [2, 4, 6, 8, 10, 12, 14, 16]
-        y3 = [one1-one,two1-two,three1-three,four1-four,five1-five,six1-six,seven1-seven,eight1-eight]
+        y3 = [one1-one-10000,two1-two-20000,three1-three-30000,four1-four-4000000,five1-five-5000000
+            ,six1-six-6000000,seven1-seven-7000000,eight1-eight-10000000]
 
         # plotting the line 2 points
         plt.plot(x3, y3, label="recovered")
