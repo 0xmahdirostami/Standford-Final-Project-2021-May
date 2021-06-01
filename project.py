@@ -25,7 +25,7 @@ MAX_LATITUDE = 90
 def calculate_dict_confirm():
     #create totall dictionary
     calculate_dict_confirmed={}
-    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_confirmed_global.csv") as co:
+    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv") as co:
         next(co)
         #creat id for every line
         id=0
@@ -74,6 +74,7 @@ def calculate_dict_confirm():
             calculate_line["3-22-2021_co"] = sum(map(float, list_line[366:426]))
             calculate_line["5-22-2021_co"] = sum(map(float, list_line[426:]))
 
+
             calculate_dict_confirmed[id]=calculate_line
             id += 1
     return calculate_dict_confirmed
@@ -81,7 +82,7 @@ def calculate_dict_confirm():
 def calculate_dict_death():
     #create totall dictionary
     calculate_dict_death={}
-    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_deaths_global.csv") as de:
+    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv") as de:
         next(de)
         #creat id for every line
         id=0
@@ -137,7 +138,7 @@ def calculate_dict_death():
 def calculate_dict_recovered():
     #create totall dictionary
     calculate_dict_recovered={}
-    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series 22-1-2020 25-5-2021/time_series_covid19_recovered_global.csv") as re:
+    with open("COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv") as re:
         next(re)
         #creat id for every line
         id=0
@@ -282,7 +283,7 @@ def graph(num , country ,state):
         # naming the y axis
         plt.ylabel('reports(people)')
         # giving a title to my graph
-        plt.title(country +" "+state +" between 1/22/2020 - 5/25/2021")
+        plt.title(country +" "+state +" between 1/22/2020 - 5/31/2021")
 
         # show a legend on the plot
         plt.legend()
@@ -300,7 +301,7 @@ def change(num):
 #find a number of countries list
 def find_num(answer):
     dict=calculate_dict_recovered()
-    for num in range(259):
+    for num in range(260):
         if dict[num]["country"]==answer:
             if dict[num]["state"]=="":
                 return (num ,answer ,"" )
@@ -309,7 +310,7 @@ def find_num(answer):
                 if state==dict[num]["state"]:
                     return (num , answer ,state)
                 else:
-                    for num in range(259):
+                    for num in range(260):
                         if state==dict[num]["state"] and dict[num]["country"]==answer:
                             return (num, answer, state)
 
@@ -401,10 +402,10 @@ def plot(which):
         dict=calculate_dict_death()
         #calculate average
         sum = 0
-        for i in range(274):
+        for i in range(275):
             sum += dict[i]["totall_deaths"]
-        average=sum/274
-        for i in range(274):
+        average=sum/275
+        for i in range(275):
             y=latitude_to_y(dict[i]['lat'])
             x=longitude_to_x(dict[i]['long'])
             totall = dict[i]["totall_deaths"]
@@ -416,11 +417,11 @@ def plot(which):
         # calculate average
         sum = 0
         # the length of recovered dictionary is less than the others
-        for i in range(259):
+        for i in range(260):
             sum += dict[i]["totall_recovered"]
-        average = sum / 259
+        average = sum / 260
         # the length of recovered dictionary is less than the others
-        for i in range(259):
+        for i in range(260):
             y=latitude_to_y(dict[i]['lat'])
             x=longitude_to_x(dict[i]['long'])
             totall = dict[i]["totall_recovered"]
@@ -430,10 +431,10 @@ def plot(which):
     elif which=="Confirmed":
         dict=calculate_dict_confirm()
         sum=0
-        for i in range(274):
+        for i in range(275):
             sum += dict[i]["totall_confirmed"]
-        average=sum/274
-        for i in range(274):
+        average=sum/275
+        for i in range(275):
             y=latitude_to_y(dict[i]['lat'])
             x=longitude_to_x(dict[i]['long'])
             totall=dict[i]["totall_confirmed"]
