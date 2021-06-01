@@ -34,13 +34,10 @@ def calculate_dict_confirm():
             calculate_line={}
             list_line=line.split(",")
             #since there is "," in the name of countries
-            if len(list_line)==495:
-                #print(list_line)
-                if list_line[1]==""""Korea""":
-                    list_line.pop(2)
-                    list_line[1] = list_line[1] + " south"
-                else:
-                    list_line.pop(1)
+            if len(list_line)==501:
+                list_line.pop(1)
+            if list_line[1][0]==" ":
+                list_line[1]="Korea South"
             calculate_line["state"]=list_line[0]
             calculate_line["country"]=list_line[1]
             # see there is lat and long or not and convert string to float
@@ -61,9 +58,6 @@ def calculate_dict_confirm():
             # create a totall and 2 moth -2month values
             calculate_line["totall_confirmed"] = sum(map(float,list_line[4:]))
             #print(len(list_line))
-            #len list_line =494
-            #len days=494-3=491
-            #len 2 moths= 491//8==60
 
             calculate_line["3-22-2020_co"]=sum(map(float,list_line[4:66]))
             calculate_line["5-22-2020_co"] = sum(map(float, list_line[66:126]))
@@ -74,7 +68,7 @@ def calculate_dict_confirm():
             calculate_line["3-22-2021_co"] = sum(map(float, list_line[366:426]))
             calculate_line["5-22-2021_co"] = sum(map(float, list_line[426:]))
 
-
+            print(calculate_line["state"],calculate_line["country"])
             calculate_dict_confirmed[id]=calculate_line
             id += 1
     return calculate_dict_confirmed
@@ -91,13 +85,10 @@ def calculate_dict_death():
             calculate_line={}
             list_line=line.split(",")
             #since there is "," in the name of countries
-            if len(list_line)==495:
-                #print(list_line)
-                if list_line[1]==""""Korea""":
-                    list_line.pop(2)
-                    list_line[1] = list_line[1] + " south"
-                else:
-                    list_line.pop(1)
+            if len(list_line) == 501:
+                list_line.pop(1)
+            if list_line[1][0] == " ":
+                list_line[1] = "Korea South"
             calculate_line["state"]=list_line[0]
             calculate_line["country"]=list_line[1]
             # see there is lat and long or not and convert string to float
@@ -131,7 +122,6 @@ def calculate_dict_death():
 
             calculate_dict_death[id]=calculate_line
             id += 1
-
     return calculate_dict_death
 
 
@@ -147,13 +137,10 @@ def calculate_dict_recovered():
             calculate_line={}
             list_line=line.split(",")
             #since there is "," in the name of countries
-            if len(list_line)==495:
-                #print(list_line)
-                if list_line[1]==""""Korea""":
-                    list_line.pop(2)
-                    list_line[1] = list_line[1] + " south"
-                else:
-                    list_line.pop(1)
+            if len(list_line) == 501:
+                list_line.pop(1)
+            if list_line[1][0] == " ":
+                list_line[1] = "Korea South"
             calculate_line["state"]=list_line[0]
             calculate_line["country"]=list_line[1]
             # see there is lat and long or not and convert string to float
@@ -306,7 +293,7 @@ def find_num(answer):
             if dict[num]["state"]=="":
                 return (num ,answer ,"" )
             else:
-                state=input("which state:").title()
+                state=input("which state please type a name that first letter is uppercase::").title()
                 if state==dict[num]["state"]:
                     return (num , answer ,state)
                 else:
@@ -455,7 +442,7 @@ def main():
         except:
             print("invalid input")
     elif answer=="Graph":
-        answer=input("which country:").title()
+        answer=input("which country please type a name that first letter is uppercase:").title()
         try:
             num , country , state=find_num(answer)
             graph(num , country ,state)
